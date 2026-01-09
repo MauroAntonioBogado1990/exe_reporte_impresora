@@ -70,7 +70,7 @@
                                 <div class="line-1">DIRECCION: <t t-esc="o.company_id.street or ''"/> - <t t-esc="o.company_id.city or ''"/></div>
 
                                 <div>
-                                    <div class="project">PROYECTO: <t t-esc="(o.origin or '')"/></div>
+                                    <div class="project">PROYECTO: <t t-esc="(o.project_id.name or '')"/></div>
                                     <div class="bultos">BULTOS: 1 / <!--<t t-esc="len(o.package_ids) if o.package_ids else 1"/>--></div>
                                 </div>
                             </div>
