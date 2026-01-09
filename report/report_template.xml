@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_label_10x10">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    
+                    <div class="page">
+                        <style>
+                            /* Ajustamos el body para que no tenga margen extra */
+                            body { margin: 0 !important; padding: 0 !important; }
+                            .label-page { width:10cm; height:10cm; overflow: hidden; }
+                            .frame { 
+                                width:100%; 
+                                height:100%; 
+                                box-sizing:border-box; 
+                                padding:12px; 
+                                border:4px solid #000; 
+                                border-radius:18px; 
+                                font-family: Arial, Helvetica, sans-serif; 
+                                display:flex; 
+                                flex-direction:column; 
+                                justify-content:space-between; 
+                            }
+                            .top { text-align:center; }
+                            .date { font-size:22px; font-weight:700; margin-bottom:6px; }
+                            .line-1 { font-size:14px; margin:6px 0; word-wrap: break-word;}
+                            .middle { text-align:center; font-size:13px; }
+                            .project { font-size:20px; font-weight:700; margin-top:6px; }
+                            .bultos { font-size:18px; margin-top:4px; }
+                        </style>
+
+                        <div class="label-page">
+                            <div class="frame">
+                                <div class="top">
+                                    <div class="date">FECHA: <t t-esc="(o.scheduled_date and o.scheduled_date.strftime('%d-%m-%Y')) or ''"/></div>
+                                    <div class="line-1">DESTINATARIO: <t t-esc="o.partner_id.name or ''"/> DNI <t t-esc="o.partner_id.vat or ''"/></div>
+                                    <div class="line-1">DIRECCION: <t t-esc="o.partner_id.street or ''"/>, <t t-esc="o.partner_id.city or ''"/> - <t t-esc="(o.partner_id.state_id and o.partner_id.state_id.name) or ''"/></div>
+                                </div>
+
+                                <div class="middle">
+                                    <div class="line-1">REMITENTE: <t t-esc="o.company_id.name or ''"/> - TEL <t t-esc="o.company_id.phone or ''"/></div>
+                                    <div class="line-1">DIRECCION: <t t-esc="o.company_id.street or ''"/> - <t t-esc="o.company_id.city or ''"/></div>
+                                </div>
+
+                                <div style="text-align:center;">
+                                    <div class="project">PROYECTO: <t t-esc="(o.origin or '')"/></div> 
+                                    <div class="bultos">BULTOS: 1 / <!--<t t-esc="len(o.package_ids) if o.package_ids else 1"/>--></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
